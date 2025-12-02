@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>芝芝生日快乐</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        .birthday-card {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header {
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #ff6b8b;
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: colorChange 5s infinite alternate;
+        }
+        
+        h2 {
+            color: #ff8e53;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .birthday-girl {
+            font-size: 2.8rem;
+            color: #e84393;
+            font-weight: bold;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .birthday-girl::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #e84393, transparent);
+            bottom: -5px;
+            left: 0;
+        }
+        
+        .message {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: #555;
+            margin: 30px 0;
+            padding: 0 10px;
+        }
+        
+        .highlight {
+            color: #ff6b8b;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .cake-container {
+            margin: 30px 0;
+            position: relative;
+            height: 180px;
+        }
+        
+        .cake {
+            position: relative;
+            width: 150px;
+            height: 100px;
+            margin: 0 auto;
+        }
+        
+        .cake-base {
+            width: 180px;
+            height: 60px;
+            background: #f8c8dc;
+            border-radius: 10px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cake-middle {
+            width: 140px;
+            height: 50px;
+            background: #ffafcc;
+            border-radius: 10px;
+            position: absolute;
+            bottom: 55px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .cake-top {
+            width: 100px;
+            height: 40px;
+            background: #ffc8dd;
+            border-radius: 10px;
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .candle {
+            width: 10px;
+            height: 40px;
+            background: #4cd137;
+            position: absolute;
+            bottom: 140px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+        
+        .flame {
+            width: 15px;
+            height: 25px;
+            background: #ff9f00;
+            border-radius: 50% 50% 20% 20%;
+            position: absolute;
+            bottom: 180px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: flicker 0.8s infinite alternate;
+            box-shadow: 0 0 20px #ff9f00;
+        }
+        
+        .decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            color: #ff6b8b;
+            animation: float 6s infinite ease-in-out;
+        }
+        
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 60px;
+            background: #ff7675;
+            border-radius: 50%;
+            animation: floatUp 8s infinite linear;
+        }
+        
+        .balloon::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 80px;
+            background: #ccc;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .wishes {
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .wishes h3 {
+            color: #e84393;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .wishes ul {
+            list-style: none;
+            text-align: left;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .wishes li {
+            padding: 8px 0;
+            font-size: 1.2rem;
+            color: #555;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .wishes li i {
+            color: #ff6b8b;
+            position: absolute;
+            left: 0;
+            top: 10px;
+        }
+        
+        footer {
+            margin-top: 30px;
+            color: #777;
+            font-size: 1.1rem;
+        }
+        
+        /* 动画 */
+        @keyframes colorChange {
+            0% { color: #ff6b8b; }
+            50% { color: #ff8e53; }
+            100% { color: #e84393; }
+        }
+        
+        @keyframes flicker {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.1); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes floatUp {
+            0% { 
+                transform: translateY(100px) rotate(0deg); 
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(-100px) rotate(20deg); 
+                opacity: 0;
+            }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.8rem; }
+            .birthday-girl { font-size: 2.2rem; }
+            .message { font-size: 1.2rem; }
+            .birthday-card { padding: 25px; }
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .birthday-girl { font-size: 1.8rem; }
+            .message { font-size: 1.1rem; }
+            .wishes li { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="birthday-card">
+        <div class="header">
+            <h1>🎂 生日快乐！ 🎉</h1>
+            <h2>致 <span class="birthday-girl">芝芝大美女</span></h2>
+        </div>
+        
+        <div class="message">
+            今天是你的特别日子，愿所有的快乐、所有的幸福、所有的温馨、所有的好运都围绕在你身边！<br>
+            <span class="highlight">不止生日快乐，更要每一天都快乐！</span>
+        </div>
+        
+        <div class="cake-container">
+            <div class="cake">
+                <div class="cake-base"></div>
+                <div class="cake-middle"></div>
+                <div class="cake-top"></div>
+                <div class="candle"></div>
+                <div class="flame"></div>
+            </div>
+        </div>
+        
+        <div class="decoration" id="decoration">
+            <!-- 装饰元素将通过JS添加 -->
+        </div>
+        
+        <div class="wishes">
+            <h3>✨ 对你的祝福 ✨</h3>
+            <ul>
+                <li><i class="fas fa-heart"></i> 愿你永远美丽动人，笑靥如花</li>
+                <li><i class="fas fa-star"></i> 愿你的每一天都充满阳光与惊喜</li>
+                <li><i class="fas fa-gift"></i> 愿所有的梦想都能实现，所有的希望都能如愿</li>
+                <li><i class="fas fa-magic"></i> 愿你永远保持自信与魅力，活成自己想要的模样</li>
+                <li><i class="fas fa-cloud-sun"></i> 不止生日快乐，更要岁岁平安，年年有今日</li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>❤️ 这份祝福永远有效，不止今天，而是每一天 ❤️</p>
+            <p>生日快乐，芝芝！愿你的人生如彩虹般绚烂多彩！</p>
+        </footer>
+    </div>
+    
+    <script>
+        // 添加装饰元素
+        const decoration = document.getElementById('decoration');
+        const colors = ['#ff6b8b', '#ff8e53', '#e84393', '#4cd137', '#3498db'];
+        
+        // 添加小心心
+        for (let i = 0; i < 15; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤';
+            heart.style.left = `${Math.random() * 100}%`;
+            heart.style.top = `${Math.random() * 100}%`;
+            heart.style.fontSize = `${Math.random() * 1 + 1}rem`;
+            heart.style.animationDelay = `${Math.random() * 5}s`;
+            heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+            decoration.appendChild(heart);
+        }
+        
+        // 添加气球
+        for (let i = 0; i < 8; i++) {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.left = `${Math.random() * 100}%`;
+            balloon.style.animationDelay = `${Math.random() * 5}s`;
+            balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
+            decoration.appendChild(balloon);
+        }
+        
+        // 添加闪烁效果到标题
+        const title = document.querySelector('h1');
+        setInterval(() => {
+            title.style.textShadow = `0 0 ${10 + Math.random() * 20}px ${colors[Math.floor(Math.random() * colors.length)]}`;
+        }, 1000);
+        
+        // 蜡烛火焰闪烁
+        const flame = document.querySelector('.flame');
+        setInterval(() => {
+            flame.style.height = `${20 + Math.random() * 10}px`;
+            flame.style.width = `${12 + Math.random() * 6}px`;
+        }, 300);
+        
+        // 生日祝福语自动变化
+        const messages = [
+            "不止生日快乐，更要每一天都快乐！",
+            "愿你的生活充满爱与欢笑！",
+            "今天你是最闪耀的星星！",
+            "愿你的人生永远春暖花开！",
+            "每一天都值得庆祝，因为你是如此特别！"
+        ];
+        
+        let messageIndex = 0;
+        const messageElement = document.querySelector('.highlight');
+        
+        setInterval(() => {
+            messageElement.style.opacity = 0;
+            setTimeout(() => {
+                messageIndex = (messageIndex + 1) % messages.length;
+                messageElement.textContent = messages[messageIndex];
+                messageElement.style.opacity = 1;
+            }, 500);
+        }, 3000);
+    </script>
+</body>
+</html>
